@@ -19,7 +19,20 @@ afterAll(async () => {
 describe("wordle app", () => {
   describe("get request- random word", () => {
     test("return status 200", () => {
-      return request(app).get("/api/users").expect(200);
+      return request(app).get("/api/words").expect(200);
+    });
+    test("return status 200 and a random word", () => {
+      return request(app)
+        .get("/api/words")
+        .expect(200)
+        .then(({ body: { word } }) => {
+          expect(word).toHaveProperty("_id");
+          expect(word).toHaveProperty("word");
+          expect(word.word).toHaveLength(5);
+        });
+    });
+    test("error handling: 404 not found", () => {
+      return request(app).get("/api/worddd").expect(404);
     });
   });
 });
