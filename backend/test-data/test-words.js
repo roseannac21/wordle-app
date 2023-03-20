@@ -1,4 +1,4 @@
-export const words = [
+const words = [
   "which",
   "there",
   "their",
@@ -255,3 +255,5 @@ export const words = [
   "wants",
   "stage",
 ];
+
+module.exports = words;
