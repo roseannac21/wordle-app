@@ -1,9 +1,9 @@
 const Words = require("./Schemas/WordsSchema");
 
 const getWord = (req, res, next) => {
-  return Words.find()
+  return Words.aggregate([{ $sample: { size: 1 } }])
     .then((result) => {
-      res.status(200);
+      res.status(200).send({ word: result[0] });
     })
     .catch(next);
 };

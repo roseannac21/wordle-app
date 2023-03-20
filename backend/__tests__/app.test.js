@@ -3,6 +3,7 @@ const { app } = require("../app");
 const mongoose = require("mongoose");
 const Words = require("../Schemas/WordsSchema");
 const database = require("../connection");
+// const words = require("../data/words");
 const words = require("../test-data/test-words");
 const url = process.env.DATABASE_URL;
 
@@ -15,6 +16,8 @@ beforeEach(async () => {
 afterAll(async () => {
   await database.close();
 });
+
+jest.setTimeout(15000);
 
 describe("wordle app", () => {
   describe("get request- random word", () => {
